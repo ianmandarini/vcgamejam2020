@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public float maxSpeed;
     public Transform groundCheck;
     public float jumpForce;
+    public float fireRate;
 
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -19,14 +21,20 @@ public class Player : MonoBehaviour
     private Weapon _weaponEquipped;
     [SerializeField]
     private Weapon _defaultWeapon;
+    private float nextAttack;
+    private bool _canTakeDamage = true;
+    [SerializeField]
+    private int _health;
+    private SpriteRenderer _sprite;
 
-    void Start()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerAttack = GetComponentInChildren<PlayerAttack>();
         _speed = maxSpeed;
         _weaponEquipped = _defaultWeapon;
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -47,10 +55,11 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > nextAttack)
         {
             _animator.SetTrigger("Attack");
             _playerAttack.PlayAnimation(_weaponEquipped.animation);
+            nextAttack = Time.time + fireRate;
         }
         //Resolver state machine do ataque
     }
@@ -79,7 +88,10 @@ public class Player : MonoBehaviour
     {
         float h = Input.GetAxisRaw("Horizontal");
 
-        _rb.velocity = new Vector2(h * _speed, _rb.velocity.y);
+        if (_canTakeDamage)
+        {
+            _rb.velocity = new Vector2(h * _speed, _rb.velocity.y);
+        }
 
         //Caso o último input seja para a direita o personagem vira para a direita
         //Caso seja para a esquerda, vira para essa direção
@@ -101,5 +113,42 @@ public class Player : MonoBehaviour
             _rb.AddForce(Vector2.up * jumpForce);
             _jump = false;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (_canTakeDamage)
+        {
+            _canTakeDamage = false;
+            _health -= damage;
+            if(_health <= 0)
+            {
+                Debug.Log("Game Over");
+                Destroy(this.gameObject);
+                Invoke("ReloadScene", 2f);
+            }
+            else
+            {
+                StartCoroutine(DamageCoroutine());
+            }
+        }
+    }
+
+    IEnumerator DamageCoroutine()
+    {
+        for (float i = 0; i < 0.6f; i += 0.2f)
+        {
+            _sprite.enabled = false;
+            yield return new WaitForSeconds(.1f);
+            _sprite.enabled = true;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _canTakeDamage = true;
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
