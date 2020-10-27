@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ebad865960b32247a3f7847f60b04cb, type: 3}
-  m_Name: Cross
+  m_Name: Default Cross
   m_EditorClassIdentifier: 
   weaponID: 0
-  weaponName: Cross
+  weaponName: Default Cross
+  damage: 1
   image: {fileID: 21300000, guid: b382c41f6a534374390fe6d5e6e82ca8, type: 3}
-  animation: {fileID: 7400000, guid: 5f4b799e6ddfc7844a692771d766eefb, type: 2}
+  animation: {fileID: 7400000, guid: 3d2d060f364aaa24b912ccbb86426de6, type: 2}

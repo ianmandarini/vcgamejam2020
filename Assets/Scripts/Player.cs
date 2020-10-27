@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float maxSpeed;
     public Transform groundCheck;
     public float jumpForce;
 
     private Rigidbody2D _rb;
-    private float _speed;
-    private bool _facingRight = true;
-    [SerializeField]private bool _isGrounded = true;
-    [SerializeField]private bool _jump = false;
-    [SerializeField]private bool _doubleJump = false;
     private Animator _animator;
     private PlayerAttack _playerAttack;
+    private float _speed;
+    private bool _facingRight = true;
+    private bool _isGrounded = true;
+    private bool _jump = false;
+    private bool _doubleJump = false;
+    private Weapon _weaponEquipped;
     [SerializeField]
-    private AnimationClip _attackClip;
+    private Weapon _defaultWeapon;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _playerAttack = GetComponentInChildren<PlayerAttack>();
         _speed = maxSpeed;
+        _weaponEquipped = _defaultWeapon;
     }
 
     private void Update()
@@ -48,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             _animator.SetTrigger("Attack");
-            _playerAttack.PlayAnimation(_attackClip);
+            _playerAttack.PlayAnimation(_weaponEquipped.animation);
         }
         //Resolver state machine do ataque
     }
@@ -65,6 +67,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 _scale = transform.localScale;
         _scale.x *= -1;
         transform.localScale = _scale;
+    }
+
+    public void AddWeapon(Weapon weapon)
+    {
+        _weaponEquipped = weapon;
+        GetComponentInChildren<PlayerAttack>().SetWeapon(_weaponEquipped.damage);
     }
 
     private void Movement()

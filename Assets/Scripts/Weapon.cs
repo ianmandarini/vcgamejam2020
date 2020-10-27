@@ -7,6 +7,7 @@ public class Weapon : ScriptableObject
 {
     public int weaponID;
     public string weaponName;
+    public int damage;
     public Sprite image;
     public AnimationClip animation;
 }

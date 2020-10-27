@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField]
     private Animator _animator;
-    private int _weaponDamage;
+    private int _weaponDamage = 1;
 
     void Start()
     {
@@ -16,5 +15,10 @@ public class PlayerAttack : MonoBehaviour
     public void PlayAnimation(AnimationClip clip)
     {
         _animator.Play(clip.name);
+    }
+
+    public void SetWeapon(int newDamageValue)
+    {
+        _weaponDamage = newDamageValue;
     }
 }
