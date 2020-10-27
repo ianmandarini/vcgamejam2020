@@ -21,4 +21,18 @@ public class PlayerAttack : MonoBehaviour
     {
         _weaponDamage = newDamageValue;
     }
+
+    public int GetDamage()
+    {
+        return _weaponDamage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Enemy enemy = other.GetComponent<Enemy>();
+        if(enemy != null)
+        {
+            enemy.TakeDamage(_weaponDamage);
+        }
+    }
 }
