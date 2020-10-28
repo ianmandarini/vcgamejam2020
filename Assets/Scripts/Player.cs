@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float _speed;
     private bool _facingRight = true;
     private bool _isGrounded = true;
+    private bool _isAttacking = false;
     private bool _jump = false;
     private bool _doubleJump = false;
     private Weapon _weaponEquipped;
@@ -57,11 +58,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && Time.time > nextAttack)
         {
+            _isAttacking = true;
             _animator.SetTrigger("Attack");
             _playerAttack.PlayAnimation(_weaponEquipped.animation);
             nextAttack = Time.time + fireRate;
+            StartCoroutine(AttackCooldown());
         }
-        //Resolver state machine do ataque
     }
 
     private void FixedUpdate()
@@ -72,10 +74,13 @@ public class Player : MonoBehaviour
 
     private void FlipCharacter() //Inverte o lado para o qual o sprite está olhando
     {
-        _facingRight = !_facingRight;
-        Vector3 _scale = transform.localScale;
-        _scale.x *= -1;
-        transform.localScale = _scale;
+        if (_isAttacking == false)
+        { 
+            _facingRight = !_facingRight;
+            Vector3 _scale = transform.localScale;
+            _scale.x *= -1;
+            transform.localScale = _scale;
+        }
     }
 
     public void AddWeapon(Weapon weapon)
@@ -145,6 +150,12 @@ public class Player : MonoBehaviour
         }
 
         _canTakeDamage = true;
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(.4f);
+        _isAttacking = false;
     }
 
     private void ReloadScene()
