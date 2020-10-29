@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
     private PlayerAttack _playerAttack;
     private float _speed;
     private bool _facingRight = true;
-    private bool _isGrounded = true;
+    [SerializeField]private bool _isGrounded = true;
     private bool _isAttacking = false;
-    private bool _jump = false;
-    private bool _doubleJump = false;
+    [SerializeField]private bool _jump = false;
+    [SerializeField]private bool _doubleJump = false;
     private Weapon _weaponEquipped;
     [SerializeField]
     private Weapon _defaultWeapon;
