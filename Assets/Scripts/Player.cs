@@ -6,31 +6,43 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    #region Movement Variables
     public float maxSpeed;
     public Transform groundCheck;
     public float jumpForce;
+    private float _speed;
+    private bool _facingRight = true;
+    [SerializeField] private bool _isGrounded = true;
+    [SerializeField] private bool _jump = false;
+    [SerializeField] private bool _doubleJump = false;
+    #endregion
+
+    #region Attack Variables
     public float fireRate;
+    private PlayerAttack _playerAttack;
+    private bool _isAttacking = false;
+    private Weapon _weaponEquipped;
+    private float nextAttack;
+    private bool _canTakeDamage = true;
+    [SerializeField] private Weapon _defaultWeapon;
+    #endregion
+
+    #region Health Variables
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    private int _numberOfHearts;
+    [SerializeField] private int _health;
+    #endregion
+
+    #region VFX
+    public AudioClip jumpSound;
+    public AudioClip attackSound;
+    public AudioClip[] footStepsSound;
+    #endregion
 
     private Rigidbody2D _rb;
     private Animator _animator;
-    private PlayerAttack _playerAttack;
-    private float _speed;
-    private bool _facingRight = true;
-    [SerializeField]private bool _isGrounded = true;
-    private bool _isAttacking = false;
-    [SerializeField]private bool _jump = false;
-    [SerializeField]private bool _doubleJump = false;
-    private Weapon _weaponEquipped;
-    [SerializeField]
-    private Weapon _defaultWeapon;
-    private float nextAttack;
-    private bool _canTakeDamage = true;
-    [SerializeField]
-    private int _health;
-    private int _numberOfHearts;
     private SpriteRenderer _sprite;
 
     private void Start()
@@ -42,36 +54,16 @@ public class Player : MonoBehaviour
         _weaponEquipped = _defaultWeapon;
         _sprite = GetComponent<SpriteRenderer>();
         _numberOfHearts = _health;
+        StartCoroutine(FootstepsCoroutine());
     }
 
     private void Update()
     {
         HealthCounter();
-        
-        _isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if (_isGrounded)
-        {
-            _doubleJump = false; //Desabilita double jump se o personagem estiver no chão
-        }
+        DoubleJump();
 
-        if (Input.GetButtonDown("Jump") && (_isGrounded || !_doubleJump))
-        {
-            _jump = true;
-            if(!_doubleJump && !_isGrounded)
-            {
-                _doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
-            }
-        }
-
-        if (Input.GetButtonDown("Fire1") && Time.time > nextAttack)
-        {
-            _isAttacking = true;
-            _animator.SetTrigger("Attack");
-            _playerAttack.PlayAnimation(_weaponEquipped.animation);
-            nextAttack = Time.time + fireRate;
-            StartCoroutine(AttackCooldown());
-        }
+        PlayerAttack();
     }
 
     private void FixedUpdate()
@@ -116,6 +108,8 @@ public class Player : MonoBehaviour
         {
             FlipCharacter();
         }
+
+        
     }
 
     private void Jump()
@@ -125,6 +119,40 @@ public class Player : MonoBehaviour
             _rb.velocity = Vector2.zero;
             _rb.AddForce(Vector2.up * jumpForce);
             _jump = false;
+            AudioManager.instance.Play(jumpSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
+        }
+    }
+
+    private void DoubleJump()
+    {
+        _isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+        if (_isGrounded)
+        {
+            _doubleJump = false; //Desabilita double jump se o personagem estiver no chão
+        }
+
+        if (Input.GetButtonDown("Jump") && (_isGrounded || !_doubleJump))
+        {
+            _jump = true;
+            if (!_doubleJump && !_isGrounded)
+            {
+                _doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
+            }
+        }
+    }
+
+    private void PlayerAttack()
+    {
+        if (Input.GetButtonDown("Fire1") && Time.time > nextAttack)
+        {
+            _isAttacking = true;
+            _animator.SetTrigger("Attack");
+            _playerAttack.PlayAnimation(_weaponEquipped.animation);
+            nextAttack = Time.time + fireRate;
+            AudioManager.instance.Play(attackSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
+
+            StartCoroutine(AttackCooldown());
         }
     }
 
@@ -145,19 +173,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(DamageCoroutine());
             }
         }
-    }
-
-    IEnumerator DamageCoroutine()
-    {
-        for (float i = 0; i < 0.6f; i += 0.2f)
-        {
-            _sprite.enabled = false;
-            yield return new WaitForSeconds(.1f);
-            _sprite.enabled = true;
-            yield return new WaitForSeconds(.1f);
-        }
-
-        _canTakeDamage = true;
     }
 
     private void HealthCounter()
@@ -189,14 +204,40 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator DamageCoroutine()
+    {
+        for (float i = 0; i < 0.6f; i += 0.2f)
+        {
+            _sprite.enabled = false;
+            yield return new WaitForSeconds(.1f);
+            _sprite.enabled = true;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _canTakeDamage = true;
+    }
+
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(.4f);
         _isAttacking = false;
     }
 
-    private void ReloadScene()
+    IEnumerator FootstepsCoroutine()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            if (_isGrounded && ((_rb.velocity.x > 0.1f) || _rb.velocity.x < -0.1f))
+            {
+                AudioManager.instance.Play(footStepsSound);
+            }
+        }
     }
 }

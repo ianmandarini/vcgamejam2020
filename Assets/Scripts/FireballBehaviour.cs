@@ -10,7 +10,6 @@ public class FireballBehaviour : MonoBehaviour
     private Vector3 _playerDistance;
     public int damage;
     public int damageForce;
-    private bool _goingRight = true;
     private Vector2 _directionToPlayer;
 
     private void Start()
@@ -21,8 +20,6 @@ public class FireballBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        Debug.Log(_directionToPlayer.x);
         if (_directionToPlayer.x < 0f)
         {
             transform.Translate(Vector2.left * _fireballSpeed * Time.fixedDeltaTime);
@@ -32,6 +29,8 @@ public class FireballBehaviour : MonoBehaviour
         {
             transform.Translate(Vector2.right * _fireballSpeed * Time.fixedDeltaTime);
         }
+
+        StartCoroutine(DestroyFireball());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,5 +45,11 @@ public class FireballBehaviour : MonoBehaviour
             player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * damageForce * sideImpulse, ForceMode2D.Impulse);
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator DestroyFireball()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Destroy(this.gameObject);
     }
 }
