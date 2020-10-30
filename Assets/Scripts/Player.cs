@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float jumpForce;
     public float fireRate;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
 
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -26,6 +30,7 @@ public class Player : MonoBehaviour
     private bool _canTakeDamage = true;
     [SerializeField]
     private int _health;
+    private int _numberOfHearts;
     private SpriteRenderer _sprite;
 
     private void Start()
@@ -36,10 +41,13 @@ public class Player : MonoBehaviour
         _speed = maxSpeed;
         _weaponEquipped = _defaultWeapon;
         _sprite = GetComponent<SpriteRenderer>();
+        _numberOfHearts = _health;
     }
 
     private void Update()
     {
+        HealthCounter();
+        
         _isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (_isGrounded)
@@ -150,6 +158,35 @@ public class Player : MonoBehaviour
         }
 
         _canTakeDamage = true;
+    }
+
+    private void HealthCounter()
+    {
+        if (_health > _numberOfHearts)
+        {
+            _health = _numberOfHearts;
+        }
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < _health)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if (i < _numberOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
     }
 
     IEnumerator AttackCooldown()
