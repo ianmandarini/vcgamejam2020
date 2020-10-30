@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private int _weaponDamage = 1;
     private Animator _animator;
-    private int _weaponDamage = 1;
 
     void Start()
     {
