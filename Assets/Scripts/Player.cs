@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     {
         HealthCounter();
 
-        DoubleJump();
+        CanDoubleJump();
 
         PlayerAttack();
     }
@@ -119,11 +119,10 @@ public class Player : MonoBehaviour
             _rb.velocity = Vector2.zero;
             _rb.AddForce(Vector2.up * jumpForce);
             _jump = false;
-            AudioManager.instance.Play(jumpSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
         }
     }
 
-    private void DoubleJump()
+    private void CanDoubleJump()
     {
         _isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
@@ -138,6 +137,8 @@ public class Player : MonoBehaviour
             if (!_doubleJump && !_isGrounded)
             {
                 _doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
+                AudioManager.instance.Play(jumpSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
+
             }
         }
     }
