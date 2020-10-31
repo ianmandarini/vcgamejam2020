@@ -4,6 +4,7 @@ public class FollowPlayer: MonoBehaviour
 {
     [SerializeField] private Rigidbody2D actor = default;
     [SerializeField] private TransformSO playerTransformSO = default;
+
     [SerializeField] private float _defaultSpeed = default;
     [SerializeField] private float _skeletonSpeed = 10f;
     [SerializeField] private float _batSpeed = 1f;

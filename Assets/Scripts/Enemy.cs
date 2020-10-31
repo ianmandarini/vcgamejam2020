@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
     private Vector3 _playerDistance;
+    private bool _canTakeDamage = true;
 
     void Start()
     {
@@ -31,7 +32,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        if (_canTakeDamage)
+        {
+            health -= damage;
+        }
+
+        _canTakeDamage = false;
+
         if (health <= 0)
         {
             _isDead = true;
@@ -42,18 +49,19 @@ public class Enemy : MonoBehaviour
                 GameObject tempItem = Instantiate(itemDrop, transform.position, transform.rotation);
                 tempItem.GetComponente<ItemDrop>().item = item;
 
-            Deixar pra depois.
+            Instanciamento de item ao derrotar inimigos. Deixar pra depois.
             }
             */
             Destroy(this.gameObject);
         }
         else
         {
-            StartCoroutine(DamageCoroutine());
+            StartCoroutine(DamageWaitCoroutine());
+            StartCoroutine(DamageFlashCoroutine());
         }
     }
 
-    IEnumerator DamageCoroutine()
+    IEnumerator DamageFlashCoroutine()
     {
         for (float i = 0; i < 0.8; i += 0.2f)
         {
@@ -62,6 +70,12 @@ public class Enemy : MonoBehaviour
             _sprite.color = Color.white;
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    IEnumerator DamageWaitCoroutine()
+    {
+        yield return new WaitForSeconds(2.5f);
+        _canTakeDamage = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
