@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.00.00">
-	<object class="AudioFile" id="{8c4a5912-72ae-4570-bca2-c808acdb98d2}">
+	<object class="AudioFile" id="{0b64a052-bbf9-4809-b124-7d172bd5b4de}">
 		<property name="assetPath">
 			<value>music/battle_theme_intro.wav</value>
 		</property>
