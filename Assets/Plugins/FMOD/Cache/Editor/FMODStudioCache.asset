@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8654703771714118356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/dracula charge attack start
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/dracula charge attack start
+  guid: d6d3a3568d787e4d81253c5cef4e43fb
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1826
 --- !u!114 &-7806891881062394049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +38,7 @@ MonoBehaviour:
   Path: event:/sfx/ui/click
   guid: 1cf22bd1a459ff43a882bda6c4a6d200
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -38,7 +61,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/nun jump hit
   guid: 2d1f4786d52f8747b3445e7dd9b7f765
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -64,6 +87,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-6178693847071325691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/Soundscape
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/Soundscape
+  guid: 7b42b2bbd537ff4fa069c4565e99f08e
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 22998
 --- !u!114 &-4429298706704635820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +125,7 @@ MonoBehaviour:
   Path: event:/music/gameplay music
   guid: 462836cf4b77984aafc62b1b0238cf9f
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -103,7 +149,30 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
+--- !u!114 &-3218264861474129215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/battle theme
+  m_EditorClassIdentifier: 
+  Path: event:/music/battle theme
+  guid: 19ecdf0d07a84445b027ba9915ca7040
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 64551
 --- !u!114 &-2779102727947490669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +188,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/nun jump start
   guid: cf546d3e0bab1f4882414e64ec72e916
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -127,6 +196,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1234
+--- !u!114 &-2777463193719124216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/dracula charge 2
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/dracula charge 2
+  guid: 0ae4a659ace18e449c58704f5a2a2ff3
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 391
 --- !u!114 &-2611926164633052820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +251,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/nun attack hit
   guid: e8277aba8f283b46bb07f85cd0296d6e
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -200,7 +292,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/nun attack start
   guid: 7959b0279fd63c4aab2dab074e8ba9d6
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -222,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 4045170359973642989}
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   EditorEvents:
   - {fileID: -1460283045318887250}
   - {fileID: 967439171173508299}
@@ -238,12 +330,19 @@ MonoBehaviour:
   - {fileID: 2424482287796841148}
   - {fileID: 8925192459336669167}
   - {fileID: -2779102727947490669}
+  - {fileID: -2777463193719124216}
+  - {fileID: -3218264861474129215}
+  - {fileID: 8608711025389389448}
+  - {fileID: 1601266374945698892}
+  - {fileID: -6178693847071325691}
+  - {fileID: 4778979483528268461}
+  - {fileID: -8654703771714118356}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   StringsBanks:
   - {fileID: 4045170359973642989}
-  stringsBankWriteTime: 637398377340309360
+  stringsBankWriteTime: 637398455037371746
   cacheVersion: 3
 --- !u!114 &388935254487543780
 MonoBehaviour:
@@ -260,14 +359,14 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/skeleton idle
   guid: 1d0bdca85521b24eb9ed162989f235c7
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
+  Is3D: 1
+  IsOneShot: 0
   Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 0
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5063
 --- !u!114 &967439171173508299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +382,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/nun footsteps
   guid: bfea3faaa0443341a596f38ff7c554f2
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -306,15 +405,56 @@ MonoBehaviour:
   Path: event:/music/vlad theme
   guid: 384dbf97fefc1c4480e53c60bef566fb
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -4035690493435962971}
+  - {fileID: 3350466573032814133}
   MinDistance: 0
   MaxDistance: 0
-  Length: 79448
+  Length: 14896
+--- !u!114 &1601266374945698892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/dracula charge attack hit
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/dracula charge attack hit
+  guid: 66aebbd4bfafb14c93f6dd149b681e31
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1641
+--- !u!114 &2114153500183221923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Audio/Fmod/moonlight project/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637398455037351784
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &2424482287796841148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +470,7 @@ MonoBehaviour:
   Path: event:/sfx/ui/hover
   guid: 64c5dc9879859e4e9e83604de8164b9b
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -338,6 +478,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1079
+--- !u!114 &3350466573032814133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/vlad theme/cutscene battle
+  m_EditorClassIdentifier: 
+  Name: cutscene battle
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &3358980099715396253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +510,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/skeleton stand up
   guid: f15ebfe4e43e994ab13eaaf048330a4a
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -375,11 +532,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Audio/Fmod/moonlight project/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637398377340309360
+  lastModified: 637398455037371746
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1506
+    Value: 1818
   Exists: 1
 --- !u!114 &4264614230729838895
 MonoBehaviour:
@@ -396,7 +553,7 @@ MonoBehaviour:
   Path: event:/sfx/gameplay/bat flying
   guid: 7920c731607af94babdfb22566ead37d
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -404,6 +561,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2765
+--- !u!114 &4778979483528268461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/enemy attack hit
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/enemy attack hit
+  guid: 95a645709c7c6e4aa1560b227f90d4ed
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 152
 --- !u!114 &6590024639119596691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +601,30 @@ MonoBehaviour:
   lastModified: 637398377340299388
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
+--- !u!114 &8608711025389389448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/dracula charge 1
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/dracula charge 1
+  guid: 38dd957fbf151645948aecc57427b785
+  Banks:
+  - {fileID: 2114153500183221923}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 897
 --- !u!114 &8810276301789206016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,7 +640,7 @@ MonoBehaviour:
   Path: event:/music/menu music
   guid: 4f02f967cef20047a5cf3fc0b746662e
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -460,7 +663,7 @@ MonoBehaviour:
   Path: event:/sfx/ui/Start
   guid: c0d4029d4236994db07bfb99ce306033
   Banks:
-  - {fileID: 6590024639119596691}
+  - {fileID: 2114153500183221923}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
