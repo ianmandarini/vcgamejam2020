@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int _health;
     #endregion
 
-    #region VFX
+    #region VFX //Mudar para FMOD depois
     public AudioClip jumpSound;
     public AudioClip attackSound;
     public AudioClip[] footStepsSound;
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
     private void CanDoubleJump()
     {
         _isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-
+        
         if (_isGrounded)
         {
             _doubleJump = false; //Desabilita double jump se o personagem estiver no chão
@@ -137,8 +137,7 @@ public class Player : MonoBehaviour
             if (!_doubleJump && !_isGrounded)
             {
                 _doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
-                //AudioManager.instance.Play(jumpSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
-                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun jump", GetComponent<Transform>().position);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun jump start", GetComponent<Transform>().position);
             }
         }
     }
@@ -151,7 +150,6 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("Attack");
             _playerAttack.PlayAnimation(_weaponEquipped.animation);
             nextAttack = Time.time + fireRate;
-            //AudioManager.instance.Play(attackSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
             FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun attack start", GetComponent<Transform>().position);
 
             StartCoroutine(AttackCooldown());
@@ -164,6 +162,7 @@ public class Player : MonoBehaviour
         {
             _canTakeDamage = false;
             _health -= damage;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/enemy attack hit", GetComponent<Transform>().position);
             if(_health <= 0)
             {
                 Debug.Log("Game Over");
@@ -238,7 +237,7 @@ public class Player : MonoBehaviour
 
             if (_isGrounded && ((_rb.velocity.x > 0.1f) || _rb.velocity.x < -0.1f))
             {
-                //AudioManager.instance.Play(footStepsSound);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun footsteps");
             }
         }
     }
