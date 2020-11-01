@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{3c98360f-0663-4c3b-9a46-c08f1aabb278}">
+		<property name="assetPath">
+			<value>sfx/click-004.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.0797083333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{035bd38f-d28d-4fb3-be46-47e5482df223}</destination>
+		</relationship>
+	</object>
+</objects>
