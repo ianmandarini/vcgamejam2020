@@ -4,49 +4,22 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    private static FMOD.Studio.EventInstance Music;
 
-    private void Awake()
+    private void Start()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
+        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/gameplay music");
+        Music.start();
+        Music.release();
     }
 
-    public void Play(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
+    public void Progress(float ProgressionLevel)
     {
-        foreach (AudioSource source in GetComponentsInChildren<AudioSource>())
-        {
-            if (source.isPlaying == false)
-            {
-                source.clip = clip;
-                source.volume = volume;
-                source.pitch = pitch;
-                source.Play();
-                break;
-            }
-        }
+        Music.setParameterByName("Progress", ProgressionLevel);
     }
 
-    public void Play(AudioClip[] clips, float volume = 1.0f, float pitch = 1.0f)
-    { 
-        foreach (AudioSource source in GetComponentsInChildren<AudioSource>())
-        {
-            if(source.isPlaying == false)
-            {
-                source.clip = clips[Random.Range(0, clips.Length)];
-                source.volume = volume;
-                source.pitch = pitch;
-                source.Play();
-                break;
-            }
-        }
+    private void OnDestroy()
+    {
+        Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
