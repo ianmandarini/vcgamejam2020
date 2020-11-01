@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,7 +9,16 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/gameplay music");
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "TitleScreen")
+        {
+            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu music");
+        }
+        else if(scene.name == "Scene01")
+        {
+            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/gameplay music");
+        }
+        
         Music.start();
         Music.release();
     }
