@@ -238,7 +238,7 @@ public class Player : MonoBehaviour
 
             if (_isGrounded && ((_rb.velocity.x > 0.1f) || _rb.velocity.x < -0.1f))
             {
-                AudioManager.instance.Play(footStepsSound);
+                //AudioManager.instance.Play(footStepsSound);
             }
         }
     }

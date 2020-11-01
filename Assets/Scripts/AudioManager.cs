@@ -1,52 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    private static FMOD.Studio.EventInstance Music;
 
-    private void Awake()
+    private void Start()
     {
-        if(instance == null)
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "TitleScreen")
         {
-            instance = this;
+            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu music");
         }
-        else
+        else if(scene.name == "Scene01")
         {
-            return;
+            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/gameplay music");
         }
-
-        DontDestroyOnLoad(gameObject);
+        
+        Music.start();
+        Music.release();
     }
 
-    public void Play(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
+    public void Progress(float ProgressionLevel)
     {
-        foreach (AudioSource source in GetComponentsInChildren<AudioSource>())
-        {
-            if (source.isPlaying == false)
-            {
-                source.clip = clip;
-                source.volume = volume;
-                source.pitch = pitch;
-                source.Play();
-                break;
-            }
-        }
+        Music.setParameterByName("Progress", ProgressionLevel);
     }
 
-    public void Play(AudioClip[] clips, float volume = 1.0f, float pitch = 1.0f)
-    { 
-        foreach (AudioSource source in GetComponentsInChildren<AudioSource>())
-        {
-            if(source.isPlaying == false)
-            {
-                source.clip = clips[Random.Range(0, clips.Length)];
-                source.volume = volume;
-                source.pitch = pitch;
-                source.Play();
-                break;
-            }
-        }
+    private void OnDestroy()
+    {
+        Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
