@@ -36,11 +36,12 @@ sysinfo.txt
 *.unitypackage
 
 # FMOD Project
-FMOD/.**
+Audio/Fmod/.**
 
 # FMOD Unity Integration 
 Assets/Plugins/FMOD/Resources/FMODStudioCache.asset
 Assets/Plugins/FMOD/Resources/FMODStudioCache.asset.meta
+Assets/Plugins/FMOD/Cache
 Assets/StreamingAssets/**/*.bank
 Assets/StreamingAssets/**/*.bank.meta
 fmod_editor.log
