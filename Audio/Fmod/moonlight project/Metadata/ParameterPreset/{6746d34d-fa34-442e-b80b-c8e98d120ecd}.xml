@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{6746d34d-fa34-442e-b80b-c8e98d120ecd}">
+		<property name="name">
+			<value>cutscene battle</value>
+		</property>
+		<relationship name="folder">
+			<destination>{527fec82-4d3d-483a-a700-f2f92ce76c8c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{83fc2904-ee4d-47cb-aaa7-a61c426533fb}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{83fc2904-ee4d-47cb-aaa7-a61c426533fb}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
