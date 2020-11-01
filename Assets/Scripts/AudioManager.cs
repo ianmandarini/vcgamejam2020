@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "TitleScreen")
+        if (scene.name == "TitleScreen" || scene.name == "CreditsScreen")
         {
             Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu music");
         }

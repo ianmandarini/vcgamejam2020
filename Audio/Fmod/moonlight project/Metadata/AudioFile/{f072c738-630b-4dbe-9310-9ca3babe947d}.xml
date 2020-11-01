@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{f072c738-630b-4dbe-9310-9ca3babe947d}">
+		<property name="assetPath">
+			<value>sfx/enemy attack hit-002.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.1553333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{035bd38f-d28d-4fb3-be46-47e5482df223}</destination>
+		</relationship>
+	</object>
+</objects>

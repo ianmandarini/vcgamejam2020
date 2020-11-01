@@ -12,7 +12,7 @@ public class TitleScreenMenu : MonoBehaviour
 
     public void Credits()
     {
-        SceneManager.LoadScene("CreditsScene");
+        SceneManager.LoadScene("CreditsScreen");
     }
 
     public void Quit()
