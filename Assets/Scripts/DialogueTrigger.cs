@@ -4,32 +4,48 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public Animator animator;
     public Dialogue dialogue;
     private DialogueManager _dialogueManager;
     private bool _hasStartedDialogue = false;
+    private bool _isInRange = false;
 
     private void Start()
     {
         _dialogueManager = FindObjectOfType<DialogueManager>();
     }
-    
-    private void OnTriggerStay2D(Collider2D other)
+
+    private void Update()
     {
-        Debug.Log(other.tag);
-        if(other.tag == "Player")
+        if (_isInRange && Input.GetButtonDown("Fire2"))
         {
-            if (Input.GetKeyDown(KeyCode.Z) && _hasStartedDialogue == false)
+            if (_hasStartedDialogue == false)
             {
                 _dialogueManager.StartDialogue(dialogue);
                 _hasStartedDialogue = true;
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.Z))
-                { 
-                    _dialogueManager.DisplayNextSentence();
-                }
+                _dialogueManager.DisplayNextSentence();
             }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _isInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            animator.SetBool("IsOpen", false);
+            _hasStartedDialogue = false;
+            _isInRange = false;
         }
     }
 }
