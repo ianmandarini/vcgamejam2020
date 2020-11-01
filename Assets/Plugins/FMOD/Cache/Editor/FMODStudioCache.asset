@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2603951141659000781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/nun attack hit
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/nun attack hit
+  guid: e8277aba8f283b46bb07f85cd0296d6e
+  Banks:
+  - {fileID: -2350821897021400311}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 256
+--- !u!114 &-2350821897021400311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Audio/Fmod/moonlight project/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637397846304132579
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-1460283045318887250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/nun attack start
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/nun attack start
+  guid: 7959b0279fd63c4aab2dab074e8ba9d6
+  Banks:
+  - {fileID: -2350821897021400311}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 591
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 4045170359973642989}
+  - {fileID: -2350821897021400311}
+  EditorEvents:
+  - {fileID: -1460283045318887250}
+  - {fileID: 967439171173508299}
+  - {fileID: -2603951141659000781}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -2350821897021400311}
+  StringsBanks:
+  - {fileID: 4045170359973642989}
+  stringsBankWriteTime: 637397846304220210
+  cacheVersion: 3
+--- !u!114 &967439171173508299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/gameplay/nun footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/gameplay/nun footsteps
+  guid: bfea3faaa0443341a596f38ff7c554f2
+  Banks:
+  - {fileID: -2350821897021400311}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4045170359973642989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Audio/Fmod/moonlight project/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637397846304220210
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 922
+  Exists: 1
