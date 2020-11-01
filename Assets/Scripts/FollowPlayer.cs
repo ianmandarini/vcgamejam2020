@@ -6,8 +6,8 @@ public class FollowPlayer: MonoBehaviour
     [SerializeField] private TransformSO playerTransformSO = default;
 
     [SerializeField] private float _defaultSpeed = default;
-    [SerializeField] private float _skeletonSpeed = 10f;
-    [SerializeField] private float _batSpeed = 1f;
+    private float _skeletonSpeed = 5f;
+    private float _batSpeed = 2f;
     private string _parentTag;
 
     private void FixedUpdate()

@@ -843,7 +843,7 @@ MonoBehaviour:
   playerTransformSO: {fileID: 11400000, guid: 62390f440fdfe0b498d1e8dae21171b4, type: 2}
   _defaultSpeed: 0
   _skeletonSpeed: 10
-  _batSpeed: 2
+  _batSpeed: 5
 --- !u!1 &8552708175924518020
 GameObject:
   m_ObjectHideFlags: 0

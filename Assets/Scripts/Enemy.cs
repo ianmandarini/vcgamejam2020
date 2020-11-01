@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         _playerDistance = _player.transform.position - this.transform.position;
@@ -35,6 +34,8 @@ public class Enemy : MonoBehaviour
         if (_canTakeDamage)
         {
             health -= damage;
+
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun attack hit", GetComponent<Transform>().position);
         }
 
         _canTakeDamage = false;

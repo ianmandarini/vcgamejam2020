@@ -137,8 +137,8 @@ public class Player : MonoBehaviour
             if (!_doubleJump && !_isGrounded)
             {
                 _doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
-                AudioManager.instance.Play(jumpSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
-
+                //AudioManager.instance.Play(jumpSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
+                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun jump", GetComponent<Transform>().position);
             }
         }
     }
@@ -151,7 +151,8 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("Attack");
             _playerAttack.PlayAnimation(_weaponEquipped.animation);
             nextAttack = Time.time + fireRate;
-            AudioManager.instance.Play(attackSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
+            //AudioManager.instance.Play(attackSound, Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun attack start", GetComponent<Transform>().position);
 
             StartCoroutine(AttackCooldown());
         }
