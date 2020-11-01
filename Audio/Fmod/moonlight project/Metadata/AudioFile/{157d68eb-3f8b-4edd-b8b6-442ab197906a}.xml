@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.00.00">
 	<object class="AudioFile" id="{157d68eb-3f8b-4edd-b8b6-442ab197906a}">
 		<property name="assetPath">
-			<value>Nun attack hit impact-003.wav</value>
+			<value>sfx/Nun attack hit impact-003.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
