@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rb;
     private Animator _animator;
-    private SpriteRenderer _sprite;
+    [SerializeField] private SpriteRenderer _sprite;
 
     private void Start()
     {
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         _playerAttack = GetComponentInChildren<PlayerAttack>();
         _speed = maxSpeed;
         _weaponEquipped = _defaultWeapon;
-        _sprite = GetComponent<SpriteRenderer>();
+        _sprite = GetComponentInChildren<SpriteRenderer>();
         _numberOfHearts = _health;
         StartCoroutine(FootstepsCoroutine());
     }
@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
         {
             _rb.velocity = Vector2.zero;
             _rb.AddForce(Vector2.up * jumpForce);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun jump start", GetComponent<Transform>().position);
             _jump = false;
         }
     }
