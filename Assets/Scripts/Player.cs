@@ -216,9 +216,9 @@ public class Player : MonoBehaviour
         for (float i = 0; i < 0.6f; i += 0.2f)
         {
             _sprite.enabled = false;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.07f);
             _sprite.enabled = true;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.07f);
         }
 
         _canTakeDamage = true;

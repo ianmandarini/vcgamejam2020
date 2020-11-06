@@ -67,15 +67,15 @@ public class Enemy : MonoBehaviour
         for (float i = 0; i < 0.8; i += 0.2f)
         {
             _sprite.color = Color.red;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.15f);
             _sprite.color = Color.white;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.15f);
         }
     }
 
     IEnumerator DamageWaitCoroutine()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         _canTakeDamage = true;
     }
 
