@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +26,8 @@ public class Player : MonoBehaviour
     private Weapon _weaponEquipped;
     private float nextAttack;
     private bool _canTakeDamage = true;
+    [SerializeField] private ParticleSystem attackParticles = default;
+    [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private Weapon _defaultWeapon;
     #endregion
 
@@ -42,166 +46,181 @@ public class Player : MonoBehaviour
     #endregion
 
     private Rigidbody2D _rb;
-    private Animator _animator;
     [SerializeField] private SpriteRenderer _sprite;
+    
+    #region Animation
+    [SerializeField] private Animator animator = default;
+    [SerializeField] private string isMovingAnimatorParameter = default;
+    [SerializeField] private string attackedAnimatorParamenter = default;
+    #endregion
+    
+    #region FMOD Events
+    [EventRef] [SerializeField] private string footsteps = default;
+    [EventRef] [SerializeField] private string jumpStartFMODEvent = default;
+    [EventRef] [SerializeField] private string attackStartFMODEvent = default;
+    [EventRef] [SerializeField] private string  attackHitFMODEvent = default;
+
+    #endregion
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _playerAttack = GetComponentInChildren<PlayerAttack>();
-        _speed = maxSpeed;
-        _weaponEquipped = _defaultWeapon;
-        _sprite = GetComponentInChildren<SpriteRenderer>();
-        _numberOfHearts = _health;
-        StartCoroutine(FootstepsCoroutine());
+        this._rb = this.GetComponent<Rigidbody2D>();
+        this._playerAttack = this.GetComponentInChildren<PlayerAttack>();
+        this._speed = this.maxSpeed;
+        this._weaponEquipped = this._defaultWeapon;
+        this._sprite = this.GetComponentInChildren<SpriteRenderer>();
+        this._numberOfHearts = this._health;
+        this.StartCoroutine(this.FootstepsCoroutine());
     }
 
     private void Update()
     {
-        HealthCounter();
-
-        CanDoubleJump();
-
-        PlayerAttack();
+        this.HealthCounter();
+        this.CanDoubleJump();
+        this.PlayerAttack();
     }
 
     private void FixedUpdate()
     {
-        Movement();
-        Jump();
+        this.Movement();
+        this.Jump();
     }
 
     private void FlipCharacter() //Inverte o lado para o qual o sprite está olhando
     {
-        if (_isAttacking == false)
-        { 
-            _facingRight = !_facingRight;
-            Vector3 _scale = transform.localScale;
-            _scale.x *= -1;
-            transform.localScale = _scale;
-        }
+        if (this._isAttacking != false)
+            return;
+        this._facingRight = !this._facingRight;
+        Vector3 scale = this.transform.localScale;
+        scale.x *= -1;
+        this.transform.localScale = scale;
     }
 
     public void AddWeapon(Weapon weapon)
     {
-        _weaponEquipped = weapon;
-        GetComponentInChildren<PlayerAttack>().SetWeapon(_weaponEquipped.damage);
+        this._weaponEquipped = weapon;
+        this.GetComponentInChildren<PlayerAttack>().SetWeapon(this._weaponEquipped.damage);
     }
 
     private void Movement()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-
-        if (_canTakeDamage)
+        bool isMoving = false;
+        if (this._isAttacking)
         {
-            _rb.velocity = new Vector2(h * _speed, _rb.velocity.y);
+            isMoving = false;
+            this._rb.velocity = new Vector2(0.0f, this._rb.velocity.y);
         }
-
-        //Caso o último input seja para a direita o personagem vira para a direita
-        //Caso seja para a esquerda, vira para essa direção
-        if (h > 0 && !_facingRight)
+        else
         {
-            FlipCharacter();
-        }
-        else if (h < 0 && _facingRight)
-        {
-            FlipCharacter();
-        }
+            float h = Input.GetAxisRaw("Horizontal");
 
-        
+            if (this._canTakeDamage)
+                this._rb.velocity = new Vector2(h * this._speed, this._rb.velocity.y);
+
+            if (h > 0 && !this._facingRight)
+                this.FlipCharacter();
+            else if (h < 0 && this._facingRight)
+                this.FlipCharacter();
+
+            isMoving = Mathf.Abs(h) > 0.001f;
+        }
+        this.animator.SetBool(this.isMovingAnimatorParameter, isMoving);
     }
 
     private void Jump()
     {
-        if (_jump)
+        if (this._jump)
         {
-            _rb.velocity = Vector2.zero;
-            _rb.AddForce(Vector2.up * jumpForce);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun jump start", GetComponent<Transform>().position);
-            _jump = false;
+            this._rb.velocity = Vector2.zero;
+            this._rb.AddForce(Vector2.up * this.jumpForce);
+            RuntimeManager.PlayOneShot(this.jumpStartFMODEvent, this.GetComponent<Transform>().position);
+            this._jump = false;
         }
     }
 
     private void CanDoubleJump()
     {
-        _isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        this._isGrounded = Physics2D.Linecast(this.transform.position, this.groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         
-        if (_isGrounded)
+        if (this._isGrounded)
         {
-            _doubleJump = false; //Desabilita double jump se o personagem estiver no chão
+            this._doubleJump = false; //Desabilita double jump se o personagem estiver no chão
         }
 
-        if (Input.GetButtonDown("Jump") && (_isGrounded || !_doubleJump))
+        if (Input.GetButtonDown("Jump") && (this._isGrounded || !this._doubleJump))
         {
-            _jump = true;
-            if (!_doubleJump && !_isGrounded)
+            this._jump = true;
+            if (!this._doubleJump && !this._isGrounded)
             {
-                _doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
-                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun jump start", GetComponent<Transform>().position);
+                this._doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
+                RuntimeManager.PlayOneShot(this.jumpStartFMODEvent, this.GetComponent<Transform>().position);
             }
         }
     }
 
     private void PlayerAttack()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextAttack)
+        if (Input.GetButtonDown("Fire1") && Time.time > this.nextAttack)
         {
-            _isAttacking = true;
-            _animator.SetTrigger("Attack");
-            _playerAttack.PlayAnimation(_weaponEquipped.animation);
-            nextAttack = Time.time + fireRate;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun attack start", GetComponent<Transform>().position);
+            this._isAttacking = true;
+            this.animator.SetTrigger(this.attackedAnimatorParamenter);
+            this.nextAttack = Time.time + this.fireRate;
+            RuntimeManager.PlayOneShot(this.attackStartFMODEvent, this.GetComponent<Transform>().position);
 
-            StartCoroutine(AttackCooldown());
+            this.StartCoroutine(this.AttackCooldown());
         }
+    }
+
+    [UsedImplicitly]
+    public void TriggerAttackParticles()
+    {
+        this.attackParticles.Play();
     }
 
     public void TakeDamage(int damage)
     {
-        if (_canTakeDamage)
+        if (!this._canTakeDamage)
+            return;
+        this._canTakeDamage = false;
+        this._health -= damage;
+        RuntimeManager.PlayOneShot(this.attackHitFMODEvent, this.GetComponent<Transform>().position);
+        if(this._health <= 0)
         {
-            _canTakeDamage = false;
-            _health -= damage;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/enemy attack hit", GetComponent<Transform>().position);
-            if(_health <= 0)
-            {
-                Debug.Log("Game Over");
-                Destroy(this.gameObject);
-                Invoke("ReloadScene", 2f);
-            }
-            else
-            {
-                StartCoroutine(DamageCoroutine());
-            }
+            Debug.Log("Game Over");
+            Destroy(this.gameObject);
+            this.Invoke("ReloadScene", 2f);
+        }
+        else
+        {
+            this.StartCoroutine(this.DamageCoroutine());
         }
     }
 
     private void HealthCounter()
     {
-        if (_health > _numberOfHearts)
+        if (this._health > this._numberOfHearts)
         {
-            _health = _numberOfHearts;
+            this._health = this._numberOfHearts;
         }
 
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < this.hearts.Length; i++)
         {
-            if (i < _health)
+            if (i < this._health)
             {
-                hearts[i].sprite = fullHeart;
+                this.hearts[i].sprite = this.fullHeart;
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                this.hearts[i].sprite = this.emptyHeart;
             }
 
-            if (i < _numberOfHearts)
+            if (i < this._numberOfHearts)
             {
-                hearts[i].enabled = true;
+                this.hearts[i].enabled = true;
             }
             else
             {
-                hearts[i].enabled = false;
+                this.hearts[i].enabled = false;
             }
         }
     }
@@ -215,19 +234,19 @@ public class Player : MonoBehaviour
     {
         for (float i = 0; i < 0.6f; i += 0.2f)
         {
-            _sprite.enabled = false;
+            this._sprite.enabled = false;
             yield return new WaitForSeconds(.07f);
-            _sprite.enabled = true;
+            this._sprite.enabled = true;
             yield return new WaitForSeconds(.07f);
         }
 
-        _canTakeDamage = true;
+        this._canTakeDamage = true;
     }
 
     IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(.4f);
-        _isAttacking = false;
+        yield return new WaitForSeconds(this.attackCooldown);
+        this._isAttacking = false;
     }
 
     IEnumerator FootstepsCoroutine()
@@ -236,10 +255,8 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
 
-            if (_isGrounded && ((_rb.velocity.x > 0.1f) || _rb.velocity.x < -0.1f))
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun footsteps");
-            }
+            if (this._isGrounded && ((this._rb.velocity.x > 0.1f) || this._rb.velocity.x < -0.1f))
+                RuntimeManager.PlayOneShot(this.footsteps);
         }
     }
 }

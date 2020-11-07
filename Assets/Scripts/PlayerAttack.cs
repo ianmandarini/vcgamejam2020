@@ -9,12 +9,12 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
+        //_animator = GetComponent<Animator>();
     }
 
     public void PlayAnimation(AnimationClip clip)
     {
-        _animator.Play(clip.name);
+        //_animator.Play(clip.name);
     }
 
     public void SetWeapon(int newDamageValue)
