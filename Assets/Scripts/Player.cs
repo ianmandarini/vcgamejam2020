@@ -199,29 +199,12 @@ public class Player : MonoBehaviour
     private void HealthCounter()
     {
         if (this._health > this._numberOfHearts)
-        {
             this._health = this._numberOfHearts;
-        }
 
         for (int i = 0; i < this.hearts.Length; i++)
         {
-            if (i < this._health)
-            {
-                this.hearts[i].sprite = this.fullHeart;
-            }
-            else
-            {
-                this.hearts[i].sprite = this.emptyHeart;
-            }
-
-            if (i < this._numberOfHearts)
-            {
-                this.hearts[i].enabled = true;
-            }
-            else
-            {
-                this.hearts[i].enabled = false;
-            }
+            this.hearts[i].sprite = i < this._health ? this.fullHeart : this.emptyHeart;
+            this.hearts[i].enabled = i < this._numberOfHearts;
         }
     }
 
