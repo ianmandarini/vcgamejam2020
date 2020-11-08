@@ -5,31 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    private static FMOD.Studio.EventInstance Music;
+    private static FMOD.Studio.EventInstance instance;
+    private DanceSystem danceSystem;
 
     private void Start()
     {
+        danceSystem = GetComponent<DanceSystem>();
+
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "TitleScreen")
         {
-            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu music");
+            instance = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu music");
         }
         else if(scene.name == "Scene01")
         {
-            Music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/gameplay music");
+            instance = FMODUnity.RuntimeManager.CreateInstance("event:/music/gameplay music");    
         }
-        
-        Music.start();
-        Music.release();
+
+        instance.start();
+        danceSystem.AssignBeatEvent(instance);
+        instance.release();
     }
 
-    public void Progress(float ProgressionLevel)
+    private void FixedUpdate()
     {
-        Music.setParameterByName("Progress", ProgressionLevel);
+        Debug.Log(DanceSystem.marker);
     }
 
     private void OnDestroy()
     {
-        Music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
