@@ -116,7 +116,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1405787661
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b125d4bdfd8029b4c8d59a7daf5947a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -239,6 +239,8 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   damage: 1
   damageForce: 5
+  _sprite: {fileID: 2558393267621114532}
+  killOnCollide: 0
 --- !u!1 &5483220371872500403
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actor: {fileID: 4305626385913742267}
   playerTransformSO: {fileID: 11400000, guid: 62390f440fdfe0b498d1e8dae21171b4, type: 2}
-  _defaultSpeed: 0
+  speed: 2
 --- !u!1 &8552708175924518020
 GameObject:
   m_ObjectHideFlags: 0

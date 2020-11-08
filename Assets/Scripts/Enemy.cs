@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
 
     private Transform _player;
     private bool _isDead = false;
-    private SpriteRenderer _sprite;
+    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] bool killOnCollide = default;
     private Rigidbody2D _rb;
     private Vector3 _playerDistance;
     private bool _canTakeDamage = true;
@@ -20,7 +21,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _sprite = GetComponentInChildren<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -44,15 +44,6 @@ public class Enemy : MonoBehaviour
         {
             _isDead = true;
             _rb.velocity = Vector2.zero;
-            /*
-            if(item != null)
-            {
-                GameObject tempItem = Instantiate(itemDrop, transform.position, transform.rotation);
-                tempItem.GetComponente<ItemDrop>().item = item;
-
-            Instanciamento de item ao derrotar inimigos. Deixar pra depois.
-            }
-            */
             Destroy(this.gameObject);
         }
         else
@@ -64,12 +55,12 @@ public class Enemy : MonoBehaviour
 
     IEnumerator DamageFlashCoroutine()
     {
-        for (float i = 0; i < 0.8; i += 0.2f)
+        for (int i = 0; i < 3; i += 1)
         {
             _sprite.color = Color.red;
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.1f);
             _sprite.color = Color.white;
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -87,6 +78,8 @@ public class Enemy : MonoBehaviour
             player.TakeDamage(damage);
             float sideImpulse = _playerDistance.x / Mathf.Abs(_playerDistance.x);
             player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * damageForce * sideImpulse, ForceMode2D.Impulse);
+            if(this.killOnCollide)
+                Destroy(this.gameObject);
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -9,13 +11,34 @@ public class DialogueTrigger : MonoBehaviour
     private DialogueManager _dialogueManager;
     private bool _hasStartedDialogue = false;
     private bool _isInRange = false;
+    [SerializeField] UnityEvent onDialogueEnd = default;
     
     public GameObject interactionIndicator = default;
 
-    private void Start()
+    private void Awake()
     {
         this._dialogueManager = FindObjectOfType<DialogueManager>();
+    }
+
+    private void Start()
+    {
         this.interactionIndicator.SetActive(false);
+        this._dialogueManager.DialogueEnded += this.DialogueEndedEventHandler;
+    }
+
+    private void OnEnable()
+    {
+        this._dialogueManager.DialogueEnded += this.DialogueEndedEventHandler;
+    }
+
+    private void OnDisable()
+    {
+        this._dialogueManager.DialogueEnded -= this.DialogueEndedEventHandler;
+    }
+
+    private void DialogueEndedEventHandler(object sender, EventArgs e)
+    {
+        this.onDialogueEnd?.Invoke();
     }
 
     private void Update()

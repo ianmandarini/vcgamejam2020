@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,8 +56,16 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public event EventHandler DialogueEnded;
+
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+        this.OnDialogueEnded();
+    }
+
+    protected virtual void OnDialogueEnded()
+    {
+        this.DialogueEnded?.Invoke(this, EventArgs.Empty);
     }
 }
