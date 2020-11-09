@@ -39,12 +39,6 @@ public class Player : MonoBehaviour
     [SerializeField] private int _health;
     #endregion
 
-    #region VFX //Mudar para FMOD depois
-    public AudioClip jumpSound;
-    public AudioClip attackSound;
-    public AudioClip[] footStepsSound;
-    #endregion
-
     private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _sprite;
     

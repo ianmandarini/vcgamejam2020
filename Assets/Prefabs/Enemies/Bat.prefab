@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &74636065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74636066}
+  - component: {fileID: 74636067}
+  m_Layer: 0
+  m_Name: DanceBehaviour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &74636066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74636065}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5302966800695226545}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74636067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74636065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd45053ead205a54d98082a95ac9c179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _followPlayerGO: {fileID: 6603794993643864180}
+  _animator: {fileID: 6706691989812481129}
+  isDancing: 0
 --- !u!1 &3158070241682399048
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2558393267621114532}
   playerTransformSO: {fileID: 11400000, guid: 62390f440fdfe0b498d1e8dae21171b4, type: 2}
-  startsFacingRight: 1
+  startsFacingLeft: 1
 --- !u!1 &5196963595495993092
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +229,7 @@ Transform:
   - {fileID: 4064045526222939858}
   - {fileID: 1042320710778273350}
   - {fileID: 7053845428231498963}
+  - {fileID: 74636066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -844,6 +891,7 @@ MonoBehaviour:
   actor: {fileID: 4305626385913742267}
   playerTransformSO: {fileID: 11400000, guid: 62390f440fdfe0b498d1e8dae21171b4, type: 2}
   speed: 2
+  _danceBehaviour: {fileID: 74636065}
 --- !u!1 &8552708175924518020
 GameObject:
   m_ObjectHideFlags: 0
