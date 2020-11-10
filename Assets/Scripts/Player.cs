@@ -101,8 +101,9 @@ public class Player : MonoBehaviour
         bool isMoving = false;
         if (this._isAttacking)
         {
-            isMoving = false;
-            this._rb.velocity = new Vector2(0.0f, this._rb.velocity.y);
+            //Player para o movimento caso ataque
+            //isMoving = false; 
+            //this._rb.velocity = new Vector2(0.0f, this._rb.velocity.y);
         }
         else
         {
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
         {
             this._rb.velocity = Vector2.zero;
             this._rb.AddForce(Vector2.up * this.jumpForce);
-            RuntimeManager.PlayOneShot(this.jumpStartFMODEvent, this.GetComponent<Transform>().position);
+            RuntimeManager.PlayOneShot(this.jumpStartFMODEvent, transform.position);
             this._jump = false;
         }
     }
@@ -147,7 +148,7 @@ public class Player : MonoBehaviour
             if (!this._doubleJump && !this._isGrounded)
             {
                 this._doubleJump = true; //Habilita double jump se o personagem não estiver tocando no chão)
-                RuntimeManager.PlayOneShot(this.jumpStartFMODEvent, this.GetComponent<Transform>().position);
+                RuntimeManager.PlayOneShot(this.jumpStartFMODEvent, transform.position);
             }
         }
     }
@@ -159,7 +160,7 @@ public class Player : MonoBehaviour
             this._isAttacking = true;
             this.animator.SetTrigger(this.attackedAnimatorParamenter);
             this.nextAttack = Time.time + this.fireRate;
-            RuntimeManager.PlayOneShot(this.attackStartFMODEvent, this.GetComponent<Transform>().position);
+            RuntimeManager.PlayOneShot(this.attackStartFMODEvent, transform.position);
 
             this.StartCoroutine(this.AttackCooldown());
         }
@@ -177,7 +178,7 @@ public class Player : MonoBehaviour
             return;
         this._canTakeDamage = false;
         this._health -= damage;
-        RuntimeManager.PlayOneShot(this.attackHitFMODEvent, this.GetComponent<Transform>().position);
+        RuntimeManager.PlayOneShot(this.attackHitFMODEvent, transform.position);
         if(this._health <= 0)
         {
             Debug.Log("Game Over");

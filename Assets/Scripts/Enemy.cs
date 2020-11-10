@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector3 _playerDistance;
     private bool _canTakeDamage = true;
+
+    #region FMOD Events
+    [EventRef] [SerializeField] private string _numAttackHit = default;
+
+    #endregion
 
     void Start()
     {
@@ -35,7 +41,7 @@ public class Enemy : MonoBehaviour
         {
             health -= damage;
 
-            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/gameplay/nun attack hit", GetComponent<Transform>().position);
+            FMODUnity.RuntimeManager.PlayOneShot(_numAttackHit, GetComponent<Transform>().position);
         }
 
         _canTakeDamage = false;
