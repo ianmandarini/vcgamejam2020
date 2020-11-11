@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     private bool _canTakeDamage = true;
     [SerializeField] private ParticleSystem attackParticles = default;
     [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private Weapon _defaultWeapon;
+    [SerializeField] private Weapon _defaultWeapon = default;
     #endregion
 
     #region Health Variables
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private GameObject _gameOverCanvas = default;
+    private Animator _gameOverCanvasAnimator;
     
     #region Animation
     [SerializeField] private Animator animator = default;
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
         this._sprite = this.GetComponentInChildren<SpriteRenderer>();
         this._numberOfHearts = this._health;
         this.StartCoroutine(this.FootstepsCoroutine());
+        this._gameOverCanvasAnimator = _gameOverCanvas.GetComponent<Animator>();
     }
 
     private void Update()
@@ -181,9 +184,8 @@ public class Player : MonoBehaviour
         RuntimeManager.PlayOneShot(this.attackHitFMODEvent, transform.position);
         if(this._health <= 0)
         {
-            Debug.Log("Game Over");
+            _gameOverCanvas.SetActive(true);
             Destroy(this.gameObject);
-            this.Invoke("ReloadScene", 2f);
         }
         else
         {

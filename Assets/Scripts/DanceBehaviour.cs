@@ -5,7 +5,7 @@ using UnityEngine;
 public class DanceBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject _followPlayerGO;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator = default;
     private string _tag = default;
     public bool isDancing = false;
 
@@ -17,20 +17,19 @@ public class DanceBehaviour : MonoBehaviour
         {   
             if (DanceSystem.marker == "bat_dance" && _tag == "Bat")
             {
-                MakeItDance("The bat is dancing now!");
+                MakeItDance();
             }
             else if(DanceSystem.marker == "skeleton_idle" && _tag == "Skeleton")
             {
-                MakeItDance("The skeleton is dancing now!");
+                MakeItDance();
             }
         }
         
     }
 
-    private void MakeItDance(string debugMessage)
+    private void MakeItDance()
     {
         isDancing = true;
-        Debug.Log(debugMessage);
         _animator.SetTrigger("ToDancing");
         StartCoroutine(WaitToDanceAgain());
     }

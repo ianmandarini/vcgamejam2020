@@ -12,8 +12,7 @@ public class Enemy : MonoBehaviour
     //public ConsumableItem item;
 
     private Transform _player;
-    private bool _isDead = false;
-    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private SpriteRenderer _sprite = default;
     [SerializeField] bool killOnCollide = default;
     private Rigidbody2D _rb;
     private Vector3 _playerDistance;
@@ -27,12 +26,16 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+
         _rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        _playerDistance = _player.transform.position - this.transform.position;
+        if(_player != null)
+        {
+            _playerDistance = _player.transform.position - this.transform.position;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -48,7 +51,6 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            _isDead = true;
             _rb.velocity = Vector2.zero;
             Destroy(this.gameObject);
         }

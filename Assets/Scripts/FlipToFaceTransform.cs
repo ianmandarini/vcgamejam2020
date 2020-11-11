@@ -9,10 +9,13 @@ public class FlipToFaceTransform: MonoBehaviour
     
     private void Update()
     {
-        if (this.transform.position.x <= this.playerTransformSO.Transform.position.x)
-            this.FaceRight();
-        else
-            this.FaceLeft();
+        if(this.playerTransformSO.Transform != null)
+        {
+            if (this.transform.position.x <= this.playerTransformSO.Transform.position.x)
+                this.FaceRight();
+            else
+                this.FaceLeft();
+        }
     }
 
     private void FaceLeft()

@@ -2,7 +2,7 @@
 
 public class TransformSetter: MonoBehaviour
 {
-        [SerializeField] private TransformSO transformSO;
+        [SerializeField] private TransformSO transformSO = default;
 
         private void Update()
         {
