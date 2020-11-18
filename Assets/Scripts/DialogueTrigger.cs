@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     public Animator animator;
     public Dialogue dialogue;
     private DialogueManager _dialogueManager;
-    private bool _hasStartedDialogue = false;
+    public bool _hasStartedDialogue = false;
     private bool _isInRange = false;
     [SerializeField] UnityEvent onDialogueEnd = default;
     
@@ -61,18 +61,28 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
             return;
-        this._isInRange = false;
-        this.interactionIndicator.SetActive(false);
-        this.animator.SetBool("IsOpen", false);
-        this._hasStartedDialogue = false;
-        this._isInRange = false;
+        NotInRange();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player"))
             return;
+        IsInRange();
+    }
+
+    public void IsInRange()
+    {
         this._isInRange = true;
         this.interactionIndicator.SetActive(true);
+    }
+
+    public void NotInRange()
+    {
+        this._isInRange = false;
+        this.interactionIndicator.SetActive(false);
+        this.animator.SetBool("IsOpen", false);
+        this._hasStartedDialogue = false;
+        this._isInRange = false;
     }
 }

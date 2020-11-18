@@ -2,38 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class AudioManager : MonoBehaviour
 {
-    public static FMOD.Studio.EventInstance _staticMusicInstance;
-    public static DanceSystem _staticDanceSystem;
+    public static FMOD.Studio.EventInstance _staticMusicInstance = default;
+    public static DanceSystem _staticDanceSystem = default;
+    [EventRef] [SerializeField] public string _song = default;
 
-    private void Awake()
+    private void Start()
     {
         _staticDanceSystem = GetComponent<DanceSystem>();
 
-        Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "TitleScreen")
+        PlaySong(_song);
+        
+        if(_staticDanceSystem != null)
         {
-            _staticMusicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Music/menu music");
+            _staticDanceSystem.AssignBeatEvent(_staticMusicInstance);
         }
-        else if(scene.name == "Scene01")
-        {
-            _staticMusicInstance = FMODUnity.RuntimeManager.CreateInstance("event:/music/gameplay music");    
-        }
-
-        _staticMusicInstance.start();
-        _staticDanceSystem.AssignBeatEvent(_staticMusicInstance);
         _staticMusicInstance.release();
     }
-
-    private void FixedUpdate()
-    {
-        //Debug.Log(DanceSystem.marker);
-    }
-
+    
     private void OnDestroy()
     {
         _staticMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public static void StopSong(string _newSong)
+    {
+        _staticMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public static void PlaySong(string _newSong)
+    {
+        if(_staticMusicInstance.ToString() != null)
+        {
+            _staticMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+        _staticMusicInstance = FMODUnity.RuntimeManager.CreateInstance(_newSong);
+        _staticMusicInstance.start();
     }
 }

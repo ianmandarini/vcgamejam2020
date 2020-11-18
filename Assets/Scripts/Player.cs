@@ -185,6 +185,7 @@ public class Player : MonoBehaviour
         if(this._health <= 0)
         {
             _gameOverCanvas.SetActive(true);
+            AudioManager.StopSong(AudioManager._staticMusicInstance.ToString());
             Destroy(this.gameObject);
         }
         else

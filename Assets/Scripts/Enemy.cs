@@ -25,7 +25,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(_player != null)
+        {
+            _player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
 
         _rb = GetComponent<Rigidbody2D>();
     }

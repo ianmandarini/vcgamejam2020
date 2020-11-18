@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class BossFightPointNoReturn : MonoBehaviour
 {
+    [EventRef] [SerializeField] private string _vladTheme = default;
     private BoxCollider2D _boxCollider2D;
 
     void Start()
@@ -18,6 +20,7 @@ public class BossFightPointNoReturn : MonoBehaviour
         if (other.CompareTag("Player") && distance < 0)
         {
             _boxCollider2D.isTrigger = false;
+            AudioManager.PlaySong(_vladTheme);
         }
     }
 }
