@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();   
     }
 
-    public void StartDialogue (Dialogue dialogue)
+    public void StartDialogue (Dialogue dialogue, string NPCTag)
     {
         animator.SetBool("IsOpen", true);
 
@@ -30,14 +30,14 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
 
-        DisplayNextSentence();
+        DisplayNextSentence(NPCTag);
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextSentence(string NPCTag)
     {
         if(sentences.Count == 0)
         {
-            EndDialogue();
+            EndDialogue(NPCTag);
             return;
         }
 
@@ -58,10 +58,13 @@ public class DialogueManager : MonoBehaviour
 
     public event EventHandler DialogueEnded;
 
-    void EndDialogue()
+    void EndDialogue(string NPCTag)
     {
         animator.SetBool("IsOpen", false);
-        this.OnDialogueEnded();
+        if(NPCTag == "Boss")
+        {
+            this.OnDialogueEnded();
+        }
     }
 
     protected virtual void OnDialogueEnded()

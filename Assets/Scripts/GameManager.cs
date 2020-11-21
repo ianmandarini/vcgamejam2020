@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using FMODUnity;
 
 public class GameManager : MonoBehaviour
@@ -67,15 +68,22 @@ public class GameManager : MonoBehaviour
         _fadeComplete = true;
     }
 
+    IEnumerator GoToTitleScreen()
+    {
+        yield return new WaitForSeconds(13.0f);
+        SceneManager.LoadScene("TitleScreen");
+    }
+
     private void StartEndingDialogue()
     {
         _dialogueTrigger.IsInRange();
-        _dialogueManager.StartDialogue(this._dialogueTrigger.dialogue);
+        _dialogueManager.StartDialogue(this._dialogueTrigger.dialogue, this.tag);
         _dialogueTrigger._hasStartedDialogue = true;
 
         if(_draculaBiteEffect != null)
         {
             RuntimeManager.PlayOneShot(_draculaBiteEffect, this.transform.position);
+            StartCoroutine(GoToTitleScreen());
         }
     }
 }

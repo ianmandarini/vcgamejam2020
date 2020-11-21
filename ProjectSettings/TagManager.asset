@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Skeleton
   - Bat
+  - Boss
   layers:
   - Default
   - TransparentFX

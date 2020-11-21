@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -11,7 +9,6 @@ public class DialogueTrigger : MonoBehaviour
     private DialogueManager _dialogueManager;
     public bool _hasStartedDialogue = false;
     private bool _isInRange = false;
-    [SerializeField] UnityEvent onDialogueEnd = default;
     
     public GameObject interactionIndicator = default;
 
@@ -19,40 +16,24 @@ public class DialogueTrigger : MonoBehaviour
     {
         this._dialogueManager = FindObjectOfType<DialogueManager>();
     }
-
+    
     private void Start()
     {
         this.interactionIndicator.SetActive(false);
-        this._dialogueManager.DialogueEnded += this.DialogueEndedEventHandler;
     }
-
-    private void OnEnable()
-    {
-        this._dialogueManager.DialogueEnded += this.DialogueEndedEventHandler;
-    }
-
-    private void OnDisable()
-    {
-        this._dialogueManager.DialogueEnded -= this.DialogueEndedEventHandler;
-    }
-
-    private void DialogueEndedEventHandler(object sender, EventArgs e)
-    {
-        this.onDialogueEnd?.Invoke();
-    }
-
+   
     private void Update()
     {
         if (this._isInRange && Input.GetButtonDown("Fire2"))
         {
             if (this._hasStartedDialogue == false)
             {
-                this._dialogueManager.StartDialogue(this.dialogue);
+                this._dialogueManager.StartDialogue(this.dialogue, this.tag);
                 this._hasStartedDialogue = true;
             }
             else
             {
-                this._dialogueManager.DisplayNextSentence();
+                this._dialogueManager.DisplayNextSentence(this.tag);
             }
         }
     }

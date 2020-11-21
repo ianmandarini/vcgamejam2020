@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2199221616938673979}
   - component: {fileID: 2199221616938673977}
   - component: {fileID: 2199221616938673976}
+  - component: {fileID: 19816002}
   m_Layer: 0
   m_Name: DialogueTrigger
   m_TagString: Untagged
@@ -51,7 +52,36 @@ MonoBehaviour:
     - Hi.
     - I am Dracula, the Impaler. Boo!
   _hasStartedDialogue: 0
-  onDialogueEnd:
+  interactionIndicator: {fileID: 2199221618420085514}
+--- !u!58 &2199221616938673976
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199221616938673978}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.2038622, y: 0.95209837}
+  serializedVersion: 2
+  m_Radius: 2.7637072
+--- !u!114 &19816002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199221616938673978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0541abfd0aed05644b6c8de0ecff29c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onDialogueEnd:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2199221617583944784}
@@ -78,23 +108,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  interactionIndicator: {fileID: 2199221618420085514}
---- !u!58 &2199221616938673976
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2199221616938673978}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.2038622, y: 0.95209837}
-  serializedVersion: 2
-  m_Radius: 2.7637072
 --- !u!1 &2199221617246755306
 GameObject:
   m_ObjectHideFlags: 0
