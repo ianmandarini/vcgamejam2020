@@ -1072,7 +1072,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
+    preprocessed: 1
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -1106,7 +1106,7 @@ MonoBehaviour:
     handleAnimatorMove: 0
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 0}
-  eventHandlerComponentsAdded: 0
+  eventHandlerComponentsAdded: 1
 --- !u!1 &5627173933240306724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1118,7 @@ GameObject:
   - component: {fileID: 5627173933240306725}
   - component: {fileID: 5627173933240306727}
   - component: {fileID: 5627173933240306726}
+  - component: {fileID: 1858944802424558536}
   m_Layer: 0
   m_Name: DetectionRange
   m_TagString: Untagged
@@ -1182,6 +1183,19 @@ MonoBehaviour:
   enterEvent: PlayerNearbyEntered
   shouldTriggerExitEvent: 0
   exitEvent: 
+--- !u!114 &1858944802424558536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627173933240306724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1879487007, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetFSMs: []
 --- !u!1 &5627173933385165436
 GameObject:
   m_ObjectHideFlags: 0

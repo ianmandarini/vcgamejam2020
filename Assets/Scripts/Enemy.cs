@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public int damageForce;
     //public ConsumableItem item;
 
-    private Transform _player;
+    private Transform _player = default;
     [SerializeField] private SpriteRenderer _sprite = default;
     [SerializeField] bool killOnCollide = default;
     private Rigidbody2D _rb;
@@ -25,20 +25,15 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        if(_player != null)
-        {
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         _rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if(_player != null)
-        {
-            _playerDistance = _player.transform.position - this.transform.position;
-        }
+        _playerDistance = _player.transform.position - this.transform.position;
+        
     }
 
     public void TakeDamage(int damage)
@@ -77,7 +72,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator DamageWaitCoroutine()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.4f);
         _canTakeDamage = true;
     }
 

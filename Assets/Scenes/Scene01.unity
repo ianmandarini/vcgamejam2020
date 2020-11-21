@@ -438,6 +438,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
+      objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 52.77
@@ -3279,6 +3283,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5627173931956694726, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
+      objectReference: {fileID: 0}
     - target: {fileID: 5627173931956694746, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_Name
       value: Skeleton (2)
@@ -3456,6 +3464,10 @@ PrefabInstance:
     - target: {fileID: 5627173931956694725, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627173931956694726, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
       objectReference: {fileID: 0}
     - target: {fileID: 5627173931956694746, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_Name
@@ -4596,6 +4608,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1856903960}
     m_Modifications:
+    - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
+      objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.81
@@ -6734,6 +6750,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
+      objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 104.33
@@ -8256,6 +8276,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1856903960}
     m_Modifications:
+    - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
+      objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.08
@@ -8639,6 +8663,10 @@ PrefabInstance:
     - target: {fileID: 5627173931956694725, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627173931956694726, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
       objectReference: {fileID: 0}
     - target: {fileID: 5627173931956694746, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_Name
@@ -14988,6 +15016,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5627173931956694726, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
+      objectReference: {fileID: 0}
     - target: {fileID: 5627173931956694746, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_Name
       value: Skeleton (3)
@@ -16259,6 +16291,10 @@ PrefabInstance:
     - target: {fileID: 3553423421724417344, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
       objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18295,6 +18331,10 @@ PrefabInstance:
     - target: {fileID: 3553423421724417344, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
       objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20556,7 +20596,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3856257074377127015, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: _numAttackHit
-      value: event:/sfx/gameplay/nun attack hit
+      value: event:/sfx/gameplay/enemy attack hit
       objectReference: {fileID: 0}
     - target: {fileID: 5302966800695226545, guid: 62ad3f1d5a3b1fb448f61210ff5cebf5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20666,6 +20706,10 @@ PrefabInstance:
     - target: {fileID: 5627173931956694725, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627173931956694726, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
+      propertyPath: _numAttackHit
+      value: event:/sfx/gameplay/enemy attack hit
       objectReference: {fileID: 0}
     - target: {fileID: 5627173931956694746, guid: e1f75d51280ffbe4a8d97bdc757572ed, type: 3}
       propertyPath: m_Name
